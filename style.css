@@ -350,6 +350,7 @@ footer {
 @media screen and (max-width: 599px){
   header h1 {
     top:45%;
+    font-size: 6rem;
   }
   #menu,#about,#location {
     height:130px;
