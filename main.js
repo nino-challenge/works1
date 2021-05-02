@@ -37,7 +37,6 @@ for(let i=0; i<inp.length; i++) {
 
 //スクロールアニメーション//
 const targetElement = document.querySelectorAll(".scAnimation");
-console.log(targetElement);
 document.addEventListener("scroll",() => {
   for (let i=0 ; i< targetElement.length; i++) {
     //ブラウザの上側から要素のトップまでの距離を取得
