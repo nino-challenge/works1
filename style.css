@@ -7,6 +7,8 @@
 *, :after, :before {
   background-repeat: no-repeat;
   box-sizing: inherit;
+  margin:0;
+  padding:0;
 }
 
 html{
@@ -17,13 +19,15 @@ html{
 body{
   font-size: 1.6em;
   box-sizing: border-box;
-  margin:0;
-  padding:0;
 }
 
 a{
   color:white;
   text-decoration: none;
+}
+
+.container {
+  background-color: #fff;
 }
 
 /***** HEADER ******/
@@ -77,8 +81,24 @@ white-space: nowrap;
 #menu {
   height:300px;
   position: relative;
-  background-image: url("img/img2.jpg");
+  /*下記はbefore擬似要素で代用*/
+  /* background-image: url("img/img2.jpg");
   background-attachment:fixed;
+  background-position:center;
+  background-size: cover;
+  background-repeat: no-repeat; */
+}
+
+#menu::before {
+  content:"";
+  display: block;
+  z-index: -1;
+  background-image: url("img/img2.jpg");
+  position:fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
   background-position:center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -98,11 +118,10 @@ white-space: nowrap;
 
 #menu-wrapper{
   max-width: 1000px;
-  /* height: 500px; */
   margin: 0 auto;
   display: flex;
   text-align: center;
-  /* justify-content: center; */
+  background-color: white;
   padding: 40px 0;
 }
 
@@ -153,6 +172,7 @@ white-space: nowrap;
   background-size: cover;
   background-repeat: no-repeat;
 }
+
 
 #about-wrapper {
   max-width: 1000px;
@@ -218,13 +238,16 @@ white-space: nowrap;
   background-repeat: no-repeat;
 }
 
+.map-container {
+  background-color:#333; 
+}
+
 #map {
-  background-color:#333;
   color:white;
   padding-bottom: 100px;
 }
 
-.mapcontainer {
+.map-wrapper {
   max-width: 800px;
   text-align: center;
   margin:0 auto;
@@ -257,7 +280,6 @@ white-space: nowrap;
 
 #map h3{
   font-size: 4rem;
-  /* margin-top: 0; */
   margin-bottom: 20px;
 }
 
@@ -269,16 +291,151 @@ white-space: nowrap;
   filter: grayscale(100%);
 }
 
+
+
+/*コンタクトフォーム*/
+#contact {
+  background-color: white;
+}
+
+.form-group{
+  margin: 0 auto;
+  width: 60%;
+  padding: 50px 0;
+}
+
+h2.heading{
+  font-size: 4rem;
+  text-transform: uppercase;
+  font-weight: 300;
+  text-align: center;
+  color: #506982;
+  border-bottom: 1px solid #506982;
+  padding-bottom: 3px;
+  margin-bottom: 20px;
+}
+
+.controls{
+  text-align: left;
+  position: relative;
+}
+
+input {
+  padding: 12px;
+  border: 1px solid #c6c6c6;
+  width: 100%;
+  margin-bottom: 18px;
+  color: #888;
+  font-family: 'Lato', 'sans-serif';
+  font-size: 1.6rem;
+  font-weight: 300;
+  border-radius: 4px;
+}
+
+input:focus, input:hover{
+  outline-color: rgb(250, 138, 73);
+  border-color: #9FB1C1;
+}
+
+label{
+  position: absolute;
+  left: 8px;
+  top: 11px;
+  width: 60%;
+  color: #999;
+  font-size: 1.6rem;
+  display: inline-block;
+  padding: 4px 10px;
+  font-weight: 400;
+  background-color: rgba(255,255,255,0);
+  transition:color .3s, top .3s, background-color .8s;
+  background-color: rgba(255,255,255,1);
+}
+
+label:focus, label:hover{
+  color: #bdcc00;
+  cursor: text;
+}
+
+label.active{
+  top: -12px;
+  color: #bdcc00;;
+  background-color: rgba(255,255,255,1);
+  width: auto;
+}
+
+textarea{
+  width: 100%;
+  font-family: 'Lato', 'sans-serif';
+  border: 1px solid #c6c6c6;
+  resize: none;
+  height: 200px;
+  padding: 20px 12px;
+  margin-bottom: 16px;
+  font-size: 1.6rem;
+  border-radius: 4px;
+  color: #888;
+}
+
+textarea:focus, textarea:hover{
+  outline-color: rgb(250, 138, 73);
+  border-color: #9FB1C1;
+}
+
+.send-btn {
+  display: block;
+  margin: 0 auto;
+  width: 30%;
+  border-radius: 4px;
+}
+
+.send-btn:hover {
+  border: 2px solid rgb(250, 138, 73);
+}
+
+
+/*****フッター*****/
+
 footer {
   background-color: #333;
   text-align: center;
-  height:30px;
+  height:40px;
   color:white;
 }
 
-/*************
+
+
+footer small {
+  line-height: 40px;
+}
+
+/***********************
+スクロールアニメーション
+************************/
+.scAnimation{
+  opacity: 0; 
+  transform: translateY(50px) skewY(3deg); 
+  transition: .8s;
+  animation-iteration-count: infinite;
+}
+
+.scAnimation.show,
+#map.scAnimation.show,
+#contact.scAnimation.show{
+  opacity: 1;
+  transform: none; 
+}
+
+#map.scAnimation,
+#contact.scAnimation{
+  transform: translateY(50px); 
+}
+
+
+
+/*****************
 ページトップリンク
-**************/
+******************/
 
 .scroll-top {
   position:fixed;
@@ -293,6 +450,7 @@ footer {
   opacity: 0;
   visibility: hidden;
   transition: opacity .5s, visibility .5s ;
+  cursor: pointer;
 }
 
 @keyframes arrowmove {
@@ -327,7 +485,7 @@ footer {
   top: 0;
   right:0;
   width:2px;
-  height: 65px;
+  height: 30px;
   background:#777;
 }
 
@@ -335,9 +493,9 @@ footer {
   content:"";
   position: absolute;
   top: 0;
-  right:-6px;
+  right:-3px;
   width:2px;
-  height: 20px;
+  height: 12px;
   background:#777;
   transform: skewX(31deg);
 }
@@ -352,6 +510,7 @@ footer {
     top:45%;
     font-size: 6rem;
   }
+
   #menu,#about,#location {
     height:130px;
   }
@@ -396,6 +555,14 @@ footer {
   .shopinfo dt{
     display:block;
     width:20%;
+  }
+
+  .form-group{
+    width:80%;
+  }
+
+  .send-btn {
+    width: 50%;
   }
 
 
@@ -581,11 +748,7 @@ footer {
     transform: translate(0, -10px) rotate(45deg);
     animation: unset;
   }
-  /* @media (max-width: 768px) {
-    .open .menuButton {
-      left: 260px;
-    }
-  } */
+
   /*============
   #mask
   =============*/
