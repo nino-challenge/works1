@@ -201,6 +201,10 @@ white-space: nowrap;
   width:35%;
 }
 
+.about-content img:hover{
+  opacity:0.5;
+}  
+
 .about-text {
   flex:1;
   padding: 0 2rem;
