@@ -201,7 +201,7 @@ white-space: nowrap;
   width:35%;
 }
 
-.about-content img:hover{
+.about-content img:active{
   opacity:0.5;
 }  
 
